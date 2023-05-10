@@ -1,4 +1,4 @@
-package com.news.app
+package com.news.app.ui.detail
 
 import android.os.Bundle
 import android.os.PersistableBundle

@@ -3,9 +3,15 @@ package com.news.app.network
 import com.news.app.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+val networkModule = module {
+    single { provideOkHttpClient() }
+    single { provideRetrofit(get()) }
+    single { provideNewsApi(get()) }
+}
 
 fun provideOkHttpClient() : OkHttpClient{
     return OkHttpClient.Builder()

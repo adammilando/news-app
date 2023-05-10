@@ -1,10 +1,10 @@
-package com.news.app
+package com.news.app.ui.home
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.news.app.R
 import com.news.app.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
