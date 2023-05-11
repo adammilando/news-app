@@ -22,7 +22,7 @@ android {
     buildTypes {
         debug {
             buildConfigField("String", 'BASE_URL', '"https://newsapi.org/v2/"')
-            buildConfigField("String", 'API_KEY', '"2094e9cb485e4145b44c2b9fc7c82620"')
+            buildConfigField("String", 'API_KEY', '"5994951cde314da9ba7811798d43b069"')
         }
         release {
             buildConfigField("String", 'BASE_URL', '"https://newsapi.org/v2/"')

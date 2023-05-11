@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiClient {
-    @GET
+    @GET("top-headlines")
     suspend fun fetchNew(
         @Query("apiKey") apiKey:String,
         @Query("country") country: String,

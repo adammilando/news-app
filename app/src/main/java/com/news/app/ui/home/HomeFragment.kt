@@ -5,14 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import com.news.app.Model.ArticleModel
 import com.news.app.Model.CategoryModel
 import com.news.app.databinding.CustomToolbarBinding
 import com.news.app.databinding.FragmentHomeBinding
 import com.news.app.ui.news.CategoryAdapter
-import org.koin.android.ext.android.get
+import com.news.app.ui.news.NewsAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.dsl.module
+import timber.log.Timber
 
 val homeModule = module {
     factory { HomeFragment() }
@@ -33,14 +36,45 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bindingToolbarBinding.textTitle.text = viewModel.title
+
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
+        bindingToolbarBinding.title = viewModel.title
+
         binding.listCategory.adapter = categoryAdapter
+
+        viewModel.category.observe(viewLifecycleOwner) {
+            Timber.e(it)
+            viewModel.fetch()
+        }
+
+        binding.listNews.adapter = newsAdapter
+
+        viewModel.news.observe(viewLifecycleOwner) {
+            Timber.e(it.articles.toString())
+            binding.imageAlert.visibility = if (it.articles.isEmpty()) View.VISIBLE else View.GONE
+            binding.textAlert.visibility = if (it.articles.isEmpty()) View.VISIBLE else View.GONE
+            newsAdapter.add(it.articles)
+        }
+
+        viewModel.message.observe(viewLifecycleOwner) {
+            it?.let {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private val newsAdapter by lazy {
+        NewsAdapter(arrayListOf(), object : NewsAdapter.OnAdapterListener{
+            override fun onClick(article: ArticleModel) {
+            }
+        })
     }
 
     private val categoryAdapter by lazy {
         CategoryAdapter(viewModel.categories, object : CategoryAdapter.OnAdapterListener{
             override fun onClick(category: CategoryModel) {
-
+                viewModel.category.postValue( category.id )
             }
         })
     }
