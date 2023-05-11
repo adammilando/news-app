@@ -1,5 +1,6 @@
 package com.news.app.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import com.news.app.model.ArticleModel
 import com.news.app.model.CategoryModel
 import com.news.app.databinding.CustomToolbarBinding
 import com.news.app.databinding.FragmentHomeBinding
+import com.news.app.ui.detail.DetailActivity
 import com.news.app.ui.news.CategoryAdapter
 import com.news.app.ui.news.NewsAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -63,7 +65,11 @@ class HomeFragment : Fragment() {
 
     private val newsAdapter by lazy {
         NewsAdapter(arrayListOf(), object : NewsAdapter.OnAdapterListener{
-            override fun onClick(article: ArticleModel) {
+            override fun onClick(articleModel: ArticleModel) {
+                startActivity(
+                    Intent(requireActivity(), DetailActivity::class.java)
+                        .putExtra("intent_detail",articleModel)
+                )
             }
         })
     }

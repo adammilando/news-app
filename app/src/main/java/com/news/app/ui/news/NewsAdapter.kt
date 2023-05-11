@@ -20,7 +20,7 @@ class NewsAdapter(
     }
 
     interface OnAdapterListener{
-        fun onClick(article: ArticleModel)
+        fun onClick(articleModel: ArticleModel)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(

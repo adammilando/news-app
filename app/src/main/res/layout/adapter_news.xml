@@ -57,7 +57,7 @@
             android:paddingTop="5dp"
             android:paddingStart="10dp"
             android:background="@color/white"
-            android:text="@{dateFormat.dateFormat(article.publishedAt.toString())}"
+            android:text="@{dateFormat.dateFormat(article.publishedAt)}"
             tools:text="Mei, 09 2023"
             android:textSize="12sp"
             android:textColor="@android:color/darker_gray"
