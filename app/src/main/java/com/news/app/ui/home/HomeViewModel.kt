@@ -8,6 +8,7 @@ import com.news.app.model.NewsModel
 import com.news.app.news.NewsRepository
 import kotlinx.coroutines.launch
 import org.koin.dsl.module
+import kotlin.math.ceil
 
 val homeViewModel = module {
     factory { HomeViewModel(get()) }
@@ -16,34 +17,45 @@ val homeViewModel = module {
 class HomeViewModel(
     val repository: NewsRepository
 ) : ViewModel() {
-    val title = "Head Lines"
+    val title = "Top News"
     val category by lazy { MutableLiveData<String>() }
     val message by lazy { MutableLiveData<String>() }
     val loading by lazy { MutableLiveData<Boolean>() }
+    val loadMore by lazy { MutableLiveData<Boolean>() }
     val news by lazy { MutableLiveData<NewsModel>() }
 
     init {
         category.value = ""
         message.value = null
     }
+
+    var query = ""
+    var page = 1
+    var pageSize = 1
+
     fun fetch(){
         viewModelScope.launch {
-            loading.value = true
+            if (page > 1 ) loadMore.value = true
+            else loading.value = true
             try {
                val response =  repository.fetch(
                     category.value!!,
-                    "",
-                    1
+                    query,
+                    page
                 )
                 news.value = response
+                val totalResults: Double = response.totalResults / 20.0
+                pageSize = ceil(totalResults).toInt()
+                page++
                 loading.value = false
+                loadMore.value = false
             }catch (e: Exception){
                 message.value = "Error Happend"
             }
         }
     }
     val categories = listOf<CategoryModel>(
-        CategoryModel("","All Category"),
+        CategoryModel("","Headlines"),
         CategoryModel("business","Business"),
         CategoryModel("entertainment","Entertainment"),
         CategoryModel("general","General"),

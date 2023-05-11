@@ -12,4 +12,5 @@ class BookmarkViewModel (
     val repository: NewsRepository
         ): ViewModel(){
     val title = "Bookmarked News"
+    val articles = repository.db.findAll()
 }
