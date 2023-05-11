@@ -6,9 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.Observer
-import com.news.app.Model.ArticleModel
-import com.news.app.Model.CategoryModel
+import com.news.app.model.ArticleModel
+import com.news.app.model.CategoryModel
 import com.news.app.databinding.CustomToolbarBinding
 import com.news.app.databinding.FragmentHomeBinding
 import com.news.app.ui.news.CategoryAdapter
@@ -52,8 +51,6 @@ class HomeFragment : Fragment() {
 
         viewModel.news.observe(viewLifecycleOwner) {
             Timber.e(it.articles.toString())
-            binding.imageAlert.visibility = if (it.articles.isEmpty()) View.VISIBLE else View.GONE
-            binding.textAlert.visibility = if (it.articles.isEmpty()) View.VISIBLE else View.GONE
             newsAdapter.add(it.articles)
         }
 

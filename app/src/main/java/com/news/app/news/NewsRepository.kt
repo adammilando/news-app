@@ -1,7 +1,7 @@
 package com.news.app.news
 
 import com.news.app.BuildConfig
-import com.news.app.Model.NewsModel
+import com.news.app.model.NewsModel
 import com.news.app.network.ApiClient
 import org.koin.dsl.module
 

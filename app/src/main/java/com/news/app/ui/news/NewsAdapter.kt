@@ -3,15 +3,21 @@ package com.news.app.ui.news
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.news.app.Model.ArticleModel
+import com.news.app.model.ArticleModel
 import com.news.app.databinding.AdapterNewsBinding
+import com.news.app.utils.DateFormatter
 
 class NewsAdapter(
     val articles: ArrayList<ArticleModel>,
     val listener: OnAdapterListener
 ): RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
-    class ViewHolder(val binding: AdapterNewsBinding): RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(val binding: AdapterNewsBinding): RecyclerView.ViewHolder(binding.root){
+        fun bind(article: ArticleModel){
+            binding.article = article
+            binding.dateFormat = DateFormatter()
+        }
+    }
 
     interface OnAdapterListener{
         fun onClick(article: ArticleModel)
@@ -27,8 +33,7 @@ class NewsAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val article = articles[position]
-        holder.binding.title.text = article.title
-        holder.binding.publishedAt.text = article.publishedAt
+        holder.bind(article)
         holder.itemView.setOnClickListener{
             listener.onClick( article )
         }

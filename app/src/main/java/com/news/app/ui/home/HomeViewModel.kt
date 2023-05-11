@@ -3,8 +3,8 @@ package com.news.app.ui.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.news.app.Model.CategoryModel
-import com.news.app.Model.NewsModel
+import com.news.app.model.CategoryModel
+import com.news.app.model.NewsModel
 import com.news.app.news.NewsRepository
 import kotlinx.coroutines.launch
 import org.koin.dsl.module
@@ -38,14 +38,14 @@ class HomeViewModel(
                 news.value = response
                 loading.value = false
             }catch (e: Exception){
-                message.value = "Error Happen"
+                message.value = "Error Happend"
             }
         }
     }
     val categories = listOf<CategoryModel>(
         CategoryModel("","All Category"),
         CategoryModel("business","Business"),
-        CategoryModel("entertaiment","Entertainment"),
+        CategoryModel("entertainment","Entertainment"),
         CategoryModel("general","General"),
         CategoryModel("health","Health"),
         CategoryModel("science","Science"),

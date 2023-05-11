@@ -1,12 +1,10 @@
 package com.news.app.ui.news
 
-import android.location.GnssAntennaInfo.Listener
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.ViewPager.OnAdapterChangeListener
-import com.news.app.Model.CategoryModel
+import com.news.app.model.CategoryModel
 import com.news.app.R
 import com.news.app.databinding.AdapterCategoryBinding
 

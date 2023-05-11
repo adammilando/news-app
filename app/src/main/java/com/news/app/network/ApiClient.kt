@@ -1,6 +1,6 @@
 package com.news.app.network
 
-import com.news.app.Model.NewsModel
+import com.news.app.model.NewsModel
 import retrofit2.http.GET
 import retrofit2.http.Query
 
