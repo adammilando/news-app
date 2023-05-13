@@ -37,12 +37,6 @@ Please refer to the subsequent sections on how to set up and run the application
 * Open the project with Android Studio
 * Build and run the application on an emulator or physical device
 
-## Contributing
-Please read [CONTRIBUTING.md](link-to-your-contributing.md) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
 ## Acknowledgments
 * NewsAPI.org for providing the API used in this project.
 
