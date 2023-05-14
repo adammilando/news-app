@@ -26,7 +26,6 @@ The application employs the Model-View-ViewModel (MVVM) design pattern.
 The application uses the [NewsAPI](https://newsapi.org/), a JSON-based API that provides articles from worldwide news sources and blogs.
 
 ## Getting Started
-Please refer to the subsequent sections on how to set up and run the application.
 
 ### Prerequisites
 * Android Studio
